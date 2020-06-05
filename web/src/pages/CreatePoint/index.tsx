@@ -5,6 +5,7 @@ import { Map, TileLayer, Marker,  } from 'react-leaflet'
 import { LeafletMouseEvent } from 'leaflet'
 import axios from 'axios'
 import api from '../../services/api'
+import Swal from 'sweetalert2'
 
 import Dropzone from '../../components/Dropzone'
 
@@ -142,140 +143,149 @@ const CreatePoint: React.FC = () => {
     
     if(selectedFile){ 
       data.append('image', selectedFile);
-    }
+    } 
     
     await api.post('points', data)
-    alert('Ponto de coleta criado')
+    
+    Swal.fire({
+      text: 'Ponto cadastrado com sucesso',
+      icon: 'success',
+      confirmButtonText: 'Ok',
+      backdrop: 'rgba(33, 33, 33, 0.7)'
+    })
+
     history.push('/')
   }
 
   return (
-    <div id="page-create-point">
-      <header>
-        <img src={logo} alt="Ecoleta"/>
-        <Link to="/">
-          <FiArrowLeft />
-          Voltar para a home 
-        </Link>
-      </header>
+    <>
+      <div id="page-create-point">
+        <header>
+          <img src={logo} alt="Ecoleta"/>
+          <Link to="/">
+            <FiArrowLeft />
+            Voltar para a home 
+          </Link>
+        </header>
 
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <h1>Cadastro do <br/>ponto de coleta</h1>
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <h1>Cadastro do <br/>ponto de coleta</h1>
 
-        <Dropzone 
-          onFileUploaded={setSeledtecFile}
-        />
+          <Dropzone 
+            onFileUploaded={setSeledtecFile}
+          />
 
-        <fieldset>
-          <legend>
-            <h2>Dados</h2>
-          </legend>
+          <fieldset>
+            <legend>
+              <h2>Dados</h2>
+            </legend>
 
-          <div className="field">
-            <label htmlFor="name">Nome da entidade</label>
-            <input 
-              type="text" 
-              name="name" 
-              id="name" 
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="field-group">
             <div className="field">
-              <label htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                name="email" 
-                id="email"
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="whatsapp">Whatsapp</label>
+              <label htmlFor="name">Nome da entidade</label>
               <input 
                 type="text" 
-                name="whatsapp" 
-                id="whatsapp"
+                name="name" 
+                id="name" 
                 onChange={handleInputChange}
               />
             </div>
-          </div>
-        </fieldset>
 
-        <fieldset>
-          <legend>
-            <h2>Endereço</h2>
-            <span>Selecione o endereço no mapa</span>
-          </legend>
-
-          <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
-            <TileLayer
-              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <Marker position={selectedPosition}/>
-          </Map>
-
-          <div className="field-group">
-            <div className="field">
-              <label htmlFor="uf">Estado (UF)</label>
-              <select 
-                name="uf" 
-                id="uf" 
-                value={selectedUf} 
-                onChange={handleSelectUf}
-              >
-                <option value="0">Selecione uma UF</option>
-                {
-                  ufs.map(uf => <option key={uf.sigla} value={uf.sigla}>{uf.nome}</option>)
-                }
-              </select>
+            <div className="field-group">
+              <div className="field">
+                <label htmlFor="email">Email</label>
+                <input 
+                  type="email" 
+                  name="email" 
+                  id="email"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="whatsapp">Whatsapp</label>
+                <input 
+                  type="text" 
+                  name="whatsapp" 
+                  id="whatsapp"
+                  onChange={handleInputChange}
+                />
+              </div>
             </div>
+          </fieldset>
 
-            <div className="field">
-              <label htmlFor="city">Cidade</label>
-              <select 
-                name="city" 
-                id="city"
-                value={selectedCity} 
-                onChange={handleSelectCity}
-              >
-                <option value="0">Selecione uma cidade</option>
-                {
-                  cities.map(city => <option key={city} value={city}>{city}</option>)
-                }
-              </select>
+          <fieldset>
+            <legend>
+              <h2>Endereço</h2>
+              <span>Selecione o endereço no mapa</span>
+            </legend>
+
+            <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
+              <TileLayer
+                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+
+              <Marker position={selectedPosition}/>
+            </Map>
+
+            <div className="field-group">
+              <div className="field">
+                <label htmlFor="uf">Estado (UF)</label>
+                <select 
+                  name="uf" 
+                  id="uf" 
+                  value={selectedUf} 
+                  onChange={handleSelectUf}
+                >
+                  <option value="0">Selecione uma UF</option>
+                  {
+                    ufs.map(uf => <option key={uf.sigla} value={uf.sigla}>{uf.nome}</option>)
+                  }
+                </select>
+              </div>
+
+              <div className="field">
+                <label htmlFor="city">Cidade</label>
+                <select 
+                  name="city" 
+                  id="city"
+                  value={selectedCity} 
+                  onChange={handleSelectCity}
+                >
+                  <option value="0">Selecione uma cidade</option>
+                  {
+                    cities.map(city => <option key={city} value={city}>{city}</option>)
+                  }
+                </select>
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset>
-          <legend>
-            <h2>Ítens de coleta</h2>
-            <span>Selecione um ou mais ítens abaixo</span>
-          </legend>
+          <fieldset>
+            <legend>
+              <h2>Ítens de coleta</h2>
+              <span>Selecione um ou mais ítens abaixo</span>
+            </legend>
 
-          <ul className="items-grid">
-            {items.map((item) => (
-              <li
-                key={item.id}
-                className={selectedItems.includes(item.id) ? 'selected' : ''}
-                onClick={() => handleSelectItem(item.id)}
-              >
-                <img src={item.image_url} alt={item.title} />
-                <span>{item.title}</span>
-              </li>
-            ))}
-          </ul>
-        </fieldset>
+            <ul className="items-grid">
+              {items.map((item) => (
+                <li
+                  key={item.id}
+                  className={selectedItems.includes(item.id) ? 'selected' : ''}
+                  onClick={() => handleSelectItem(item.id)}
+                >
+                  <img src={item.image_url} alt={item.title} />
+                  <span>{item.title}</span>
+                </li>
+              ))}
+            </ul>
+          </fieldset>
 
-        <button type="submit">
-          Cadastrar ponto de coleta
-        </button>
-      </form>
-    </div>
+          <button type="submit">
+            Cadastrar ponto de coleta
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 

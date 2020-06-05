@@ -1600,6 +1600,13 @@
     "@types/leaflet" "*"
     "@types/react" "*"
 
+"@types/react-lottie@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@types/react-lottie/-/react-lottie-1.2.5.tgz#659322961de534227ba354109342cad967d98841"
+  integrity sha512-g5c7r0VN8g0hLsFEtR71ZFDWDp6niY4D/7llcAcLjV3LpaoyANmaQ9jispskWpkAUP+NYQcFllMtoGIWUM6VRw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.5.tgz#7c334a2ea785dbad2b2dcdd83d2cf3d9973da090"
@@ -6629,6 +6636,11 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lottie-web@^5.1.3:
+  version "5.6.10"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.6.10.tgz#9c2959df12976f49637f563dcc96db2078010b4d"
+  integrity sha512-ucTzaiBJOMm56/K7Wqjajyh7qXlonHKB3+b5fHvhSiz+jOrXt6QDNKAinI3qdw/zvvYHKzXvFMy5SgOXbOJ5ng==
+
 lower-case@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-2.0.1.tgz#39eeb36e396115cc05e29422eaea9e692c9408c7"
@@ -8746,6 +8758,14 @@ react-leaflet@^2.7.0:
     hoist-non-react-statics "^3.3.2"
     warning "^4.0.3"
 
+react-lottie@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-lottie/-/react-lottie-1.2.3.tgz#8544b96939e088658072eea5e12d912cdaa3acc1"
+  integrity sha512-qLCERxUr8M+4mm1LU0Ruxw5Y5Fn/OmYkGfnA+JDM/dZb3oKwVAJCjwnjkj9TMHtzR2U6sMEUD3ZZ1RaHagM7kA==
+  dependencies:
+    babel-runtime "^6.26.0"
+    lottie-web "^5.1.3"
+
 react-router-dom@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.2.0.tgz#9e65a4d0c45e13289e66c7b17c7e175d0ea15662"
@@ -10047,6 +10067,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert2@^9.14.0:
+  version "9.14.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.14.0.tgz#2ae59c417745ae9360e47d7745a39be3ecbee1a2"
+  integrity sha512-NXxaR5ZsT9JQ+pEH0lQPa6fzFr7Uqx2VNI3dcPBShwTngQkVLXzEJYB0XjWAx/oBLAIPyHlc/tc3bkojJ2HYzg==
 
 symbol-tree@^3.2.2:
   version "3.2.4"
